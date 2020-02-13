@@ -1,11 +1,7 @@
 package money
 
-class Franc(private var amount: Int) {
-  def times(multiplier: Int) {
+class Franc(var amount: Int) extends Money {
+  def times(multiplier: Int): Franc ={
     new Franc(amount * multiplier)
-  }
-
-  def equals(franc: Franc): Boolean = {
-    amount == franc.amount
   }
 }
