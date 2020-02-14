@@ -1,7 +1,8 @@
 package money
 
-class Franc(var amount: Int) extends Money {
-  def times(multiplier: Int): Franc ={
-    new Franc(amount * multiplier)
-  }
-}
+//@deprecated
+//case class Franc(private var amount: Int) extends Money {
+//  def times(multiplier: Int): Money ={
+//    new Franc(amount * multiplier)
+//  }
+//}
