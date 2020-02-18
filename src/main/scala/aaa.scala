@@ -1,3 +1,0 @@
-class aaa {
-  def ff = {}
-}
