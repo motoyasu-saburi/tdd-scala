@@ -1,27 +1,21 @@
 package money
 
 sealed abstract class Money {
-  val currencyUnit: MyCurrencyUnit
+  implicit val currencyUnit: MyCurrencyUnit
 
-  def times(multiplier: Int): Money
-  def currency():String
+  def moneyAmount: Int
 
+  def times(multiplier: Int): Money = {
+    MyCurrency(this.moneyAmount * multiplier)
+  }
 }
 
-case class Dollar(amount: Int) extends Money {
-  val currencyUnit: MyCurrencyUnit = MyCurrencyUnit.USD
-
-  override def times(multiplier: Int): Money =
-    Dollar(this.amount * multiplier)
-
-  override def currency(): String = "USD"
+case class Dollar(private val dollarAmount: Int) extends Money {
+  implicit val currencyUnit: MyCurrencyUnit = MyCurrencyUnit.USD
+  override def moneyAmount: Int = dollarAmount
 }
 
-case class Franc(amount: Int) extends Money {
-  val currencyUnit: MyCurrencyUnit = MyCurrencyUnit.CHF
-
-  override def times(multiplier: Int): Money =
-    Franc(this.amount * multiplier)
-
-  override def currency(): String = "CHF"
+case class Franc(private val francAmount: Int) extends Money {
+  implicit val currencyUnit: MyCurrencyUnit = MyCurrencyUnit.CHF
+  override def moneyAmount: Int = francAmount
 }

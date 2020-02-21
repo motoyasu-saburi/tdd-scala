@@ -7,15 +7,10 @@ sealed trait MyCurrency
  */
 object MyCurrency {
   /* 通過の定義 */
-  // Dollar
-  case object DollarCurrency extends MyCurrency
-  // Franc
-  case object FrancCurrency extends MyCurrency
-
-  def apply(amount: Int)(implicit currency: MyCurrency): Money = {
-    currency match {
-      case DollarCurrency => Dollar(amount)
-      case FrancCurrency => Franc(amount)
+  def apply(amount: Int)(implicit currencyUnit: MyCurrencyUnit): Money = {
+    currencyUnit match {
+      case MyCurrencyUnit.USD => Dollar(amount)
+      case MyCurrencyUnit.CHF => Franc(amount)
     }
   }
 
